@@ -1,0 +1,37 @@
+#include <stdio.h>
+
+int main() {
+    FILE *dosya;
+
+    // Dosyayı yazma modunda açıyoruz
+    dosya = fopen("metin.txt", "w");
+    if (dosya == NULL) {
+        printf("Dosya acilirken bir hata olustu.\n");
+        return 1;
+    }
+
+    // Dosyaya metni yazıyoruz
+    fprintf(dosya, "Merhaba, Dunya!");
+
+    // Dosyayı kapatıyoruz
+    fclose(dosya);
+
+    // Dosyayı okuma modunda tekrar açıyoruz
+    dosya = fopen("metin.txt", "r");
+    if (dosya == NULL) {
+        printf("Dosya acilirken bir hata olustu.\n");
+        return 1;
+    }
+
+    // Dosyadan metni okuyup ekrana yazdırıyoruz
+    char karakter;
+    printf("Dosya icerigi:\n");
+    while ((karakter = fgetc(dosya)) != EOF) {
+        putchar(karakter);
+    }
+
+    // Dosyayı kapatıyoruz
+    fclose(dosya);
+
+    return 0;
+}
